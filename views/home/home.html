@@ -1,0 +1,197 @@
+
+<head/><div class="bx-feed" id="feed">
+    <div class="container"><!--feed-->
+        <div class="row">
+            <div class="col-left col-sm-12 col-md-8"><!--feed-->
+                <div class="feed preLoading">
+                    <div class="feed-inner">
+                        <!--feed item-->
+                        <div class="feed-item">
+                            <div class="media">
+                                <div class="thumbnail">
+                                    <div class="timeline-wrapper list-feed">
+                                        <div class="timeline-item">
+                                            <div class="animated-background ">
+                                                <div class="background-masker header-top"></div>
+                                                <div class="background-masker header-left"></div>
+                                                <div class="background-masker header-right"></div>
+                                                <div class="background-masker header-bottom"></div>
+                                                <div class="background-masker subheader-left"></div>
+                                                <div class="background-masker subheader-right"></div>
+                                                <div class="background-masker subheader-bottom"></div>
+                                                <div class="background-masker content-top"></div>
+                                                <div class="background-masker content-first-end"></div>
+                                                <div class="background-masker content-second-line"></div>
+                                                <div class="background-masker content-second-end"></div>
+                                                <div class="background-masker content-third-line"></div>
+                                                <div class="background-masker content-third-end"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end feed item-->
+
+                        <!--feed item-->
+                        <div class="feed-item">
+                            <div class="media">
+                                <div class="thumbnail">
+                                    <div class="timeline-wrapper list-feed">
+                                        <div class="timeline-item">
+                                            <div class="animated-background ">
+                                                <div class="background-masker header-top"></div>
+                                                <div class="background-masker header-left"></div>
+                                                <div class="background-masker header-right"></div>
+                                                <div class="background-masker header-bottom"></div>
+                                                <div class="background-masker subheader-left"></div>
+                                                <div class="background-masker subheader-right"></div>
+                                                <div class="background-masker subheader-bottom"></div>
+                                                <div class="background-masker content-top"></div>
+                                                <div class="background-masker content-first-end"></div>
+                                                <div class="background-masker content-second-line"></div>
+                                                <div class="background-masker content-second-end"></div>
+                                                <div class="background-masker content-third-line"></div>
+                                                <div class="background-masker content-third-end"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end feed item-->
+
+                        <!--feed item-->
+                        <div class="feed-item">
+                            <div class="media">
+                                <div class="thumbnail">
+                                    <div class="timeline-wrapper list-feed">
+                                        <div class="timeline-item">
+                                            <div class="animated-background ">
+                                                <div class="background-masker header-top"></div>
+                                                <div class="background-masker header-left"></div>
+                                                <div class="background-masker header-right"></div>
+                                                <div class="background-masker header-bottom"></div>
+                                                <div class="background-masker subheader-left"></div>
+                                                <div class="background-masker subheader-right"></div>
+                                                <div class="background-masker subheader-bottom"></div>
+                                                <div class="background-masker content-top"></div>
+                                                <div class="background-masker content-first-end"></div>
+                                                <div class="background-masker content-second-line"></div>
+                                                <div class="background-masker content-second-end"></div>
+                                                <div class="background-masker content-third-line"></div>
+                                                <div class="background-masker content-third-end"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end feed item-->
+
+                        <!--feed item-->
+                        <div class="feed-item">
+                            <div class="media">
+                                <div class="thumbnail">
+                                    <div class="timeline-wrapper list-feed">
+                                        <div class="timeline-item">
+                                            <div class="animated-background ">
+                                                <div class="background-masker header-top"></div>
+                                                <div class="background-masker header-left"></div>
+                                                <div class="background-masker header-right"></div>
+                                                <div class="background-masker header-bottom"></div>
+                                                <div class="background-masker subheader-left"></div>
+                                                <div class="background-masker subheader-right"></div>
+                                                <div class="background-masker subheader-bottom"></div>
+                                                <div class="background-masker content-top"></div>
+                                                <div class="background-masker content-first-end"></div>
+                                                <div class="background-masker content-second-line"></div>
+                                                <div class="background-masker content-second-end"></div>
+                                                <div class="background-masker content-third-line"></div>
+                                                <div class="background-masker content-third-end"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end feed item-->
+
+                    </div>
+                </div>
+                <div class="feed" ng-show="preLoading">
+                    <div class="feed-item">
+                        <div class="media">
+                            <div class="thumbnail">
+                                <div class="media-header">
+                                    <a href="javascript:;" ng-click="selectCate()">
+                                        <div class="media-left">
+                                            <img class="media-object" src="images/beatvn.png" alt="">
+                                        </div>
+                                        <div class="media-body">
+                                            <h4 class="media-noti">Bạn có tin gì mới?</h4>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="feed-inner" infinite-scroll='nextPage()' infinite-scroll-disabled='busy' infinite-scroll-distance='3'>
+                        <div ng-repeat='(pidx, item) in posts' class="feed-item " ng-controller="PostCtrl" ng-init="init(item, pidx)" track-position>
+                            <div ng-include="'/views/post/article.html'">
+
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-right col-sm-12 col-md-4"><!--feed-->
+                <div class="right-inner">
+                    <div class="content-sticky">
+                        <!--app-->
+                        <!-- <div class="app-page">
+                            <a href="javascript:;" ng-click="getApp()">
+                                <div class="item-pic">
+                                    <img src="data:image/png;base64,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">
+                                </div>
+                                <div class="item-intro">
+                                    <div class="item-intro-title">#bancobiet :</div>
+                                    <div class="item-intro-content">
+                                        <span>Beatvn đã có phiên bản dành cho iOS và Android để cập nhật tin tức nhanh nhất</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div> -->
+                        <!--end app-->
+                        <!--top-->
+
+                        <div class="user user-top" ng-include="'/views/home/top_users.html'">
+
+                        </div>
+                        <!--end top-->
+                        <div ng-include="'/views/home/featured.html'">
+                            <!--hot-->
+
+                            <!--ebd hot-->
+                        </div>
+                    </div>
+                    <div class="content-right">
+
+                    </div>
+
+
+                </div>
+                <!--end feed-->
+
+            </div>
+        </div>
+
+        <!--end feed-->
+    </div>
+</div>
+<div ng-if="loggedIn" ng-include="'/views/chat/sidebar.html'">
+
+</div>

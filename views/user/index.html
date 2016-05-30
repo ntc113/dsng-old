@@ -1,0 +1,73 @@
+<head/><div class="bx-user">
+    <div class="container"><!--user-->
+
+        <div class="user">
+            <div class="user-inner">
+                <div class="header-user">
+                    <div class="avatar-user">
+                        <img ng-src="{{user.avatar}}">
+                    </div>
+                    <div class="info-user">
+                        <h1>{{user.display_name}} <span class="beat-coin"><span>{{user.bcoin | shortNumber}} <img src="images/beat-coin-white.png"></span></span></h1>
+                        <div class="status">I'm feeling, it's the beat. Everybody put your hands up for the beat of
+                            life.
+                        </div>
+                        <div class="extra">
+                            <div class="item-extra">
+                                <i class="icon ion-ios-world-outline"></i>
+                                <a href="javascript:;">/user/{{user.id}}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-user">
+                    <div class="action-btn" ng-if="!user.is_me">
+                        <a ng-if="!user.followed" ng-click="follow()" class="btn btn-success btn-lg">
+                            <span>Follow</span>
+                        </a>
+                        <a ng-click="openBoxChat(user.infoUser.userId, 1, user.display_name, user.id)" href="javascript:;" class="btn btn-success btn-lg btn-icon">
+                            <span class="icon ion-android-chat"></span><span>Tin nhắn</span>
+                        </a>
+                        <a ng-if="user.followed" ng-click="unFollow()" class="btn btn-following btn-lg">
+                            <span class="ac-following">Following</span>
+                            <span class="ac-unfollow">Unfollow</span>
+                        </a>
+                    </div>
+                    <ul class="nav nav-pills">
+                        <li class="active"><a href="javascript:;"><span>{{user.total_posts}}</span> Bài viết</a></li>
+                        <li><a href="javascript:;"><span>{{user.following}}</span>Following</a></li>
+                        <li><a href="javascript:;"><span>{{user.follower}}</span>Followers</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--end user-->
+    </div>
+</div>
+<div ng-controller="UserWallCtrl" class="bx-feed bx-feed-detail">
+    <div class="container"><!--feed-->
+        <div class="feed">
+            <div class="feed-inner" infinite-scroll='nextPage()' infinite-scroll-disabled='busy' infinite-scroll-distance='3'>
+                <div masonry item-selector=".feed-item" fitWidth="true" isFitWidth="true">
+                    <!--feed item-->
+                    <div ng-repeat='(pidx, item) in posts' class="feed-item masonry-brick" ng-controller="PostCtrl" ng-init="init(item, pidx)" track-position>
+                        <div ng-include="'/views/post/article.html'">
+
+                        </div>
+                    </div>
+                    <!--end feed item-->
+                </div>
+
+
+            </div>
+            <!--feed more-->
+            <div class="load-more">
+                <a ng-show="showMore" ng-click="loadNextPage()" class="btn btn-default btn-block btn-lg">
+                    Xem thêm
+                </a>
+            </div>
+            <!--end feed more-->
+        </div>
+        <!--end feed-->
+    </div>
+</div>

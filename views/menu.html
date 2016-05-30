@@ -1,0 +1,135 @@
+<head/><ul class="nav navbar-nav">
+    <li ui-sref-active="active"><a href="" ui-sref="home">Home</a></li>
+    <li ui-sref-active="active" ng-repeat='menu in menus'>
+        <a href="" ui-sref="category.detail({slug: menu.slug})">{{ ::menu.name}}</a>
+    </li>
+</ul>
+<div ng-controller="SearchBarCtrl">
+    <form class="navbar-form navbar-right" ui-keypress="{13: 'search()'} ">
+        <div class="input-group form-search">
+            <input ng-model="keyword" type="text" placeholder="Tìm bạn" class="form-control">
+            <div class="input-group-btn">
+                <button ng-click="search()" class="btn btn-default"><i class="icon ion-android-search"></i></button>
+            </div>
+        </div>
+        <div ng-if="!loggedIn" class="form-group form-sign-in"><a data-toggle="modal" ng-click="showLoginBox()" class="btn btn-default">Đăng nhập</a></div>
+        <div ng-if="!loggedIn" class="form-group form-sign-out"><a ng-click="showRegistrationBox()" data-toggle="modal" class="btn btn-success">Đăng ký</a></div>
+        <div ng-if="loggedIn" class="btn-group form-giftcode">
+            <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-default dropdown-toggle"><i class="icon ion-ios-box"></i></button><!-- Card -->
+            <div class="dropdown-menu dropdown-menu-right list-card">
+                <div class="arrow"></div>
+                <div class="dropdown-header">
+                    <h5>Đổi thẻ</h5>
+                </div>
+                <div class="dropdown-body">
+                    <div class="card-bar">
+                        <ul>
+                            <li ng-repeat='award in awards'>
+                                <div class="block-card">
+                                    <a href="#">
+                                <span class="item-pic">
+                                    <img ng-src="{{award.image_url}}">
+                                </span>
+                                <span class="item-info">
+                                    <span class="item-type">{{award.name}}</span>
+                                    <span class="item-name">{{award.price | number:0}} BCoin</span>
+                                </span>
+                                        <span class="item-button btn btn-success ">Đổi thẻ</span>
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="dropdown-footer"><a href="#" class="see-all">Xem tất cả</a></div>
+            </div>
+        </div>
+        <div ng-if="loggedIn" class="btn-group form-chat">
+            <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-default dropdown-toggle"><i class="icon ion-android-chat"></i></button><!-- Notication -->
+            <div class="dropdown-menu dropdown-menu-right list-messages">
+                <div class="arrow"></div>
+                <div class="dropdown-header">
+                    <h5>Tin nhắn</h5>
+                    <div class="pull-right">
+                        <a href="#">Đã đọc</a>
+                    </div>
+                </div>
+                <div class="dropdown-body">
+                    <div class="messages-bar">
+                        <ul class="nav nav-sidebar">
+                            <li ng-repeat='recentChat in recentChats' ng-class="{active: recentChat.unread > 0}" ng-click="openBoxChat(recentChat.chatId, recentChat.type, recentChat.chatTarget.fullname, recentChat.chatTarget.azStackUserID)">
+                                <div class="media postContent">
+                                    <a class="member" href="#">
+                                        <span class="media-object"><img class="media-object" ng-src="{{recentChat.avatar}}" alt=""/></span>
+                                        <h6 class="media-heading">{{recentChat.chatTarget.fullname}}</h6>
+                                        <span class="contents"><span class="name">{{recentChat.chatTarget.fullname}}:</span> {{recentChat.lastMsg.msg}}</span>
+                                        <small class="times" am-time-ago="'{{recentChat.lastMsg.created}}'"></small>
+                                        <span class="read"></span>
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="dropdown-footer"><a ui-sref="chat" href="javascript:;" class="see-all">Xem tất cả</a></div>
+            </div>
+        </div>
+        <div ng-if="loggedIn" class="btn-group form-notifition">
+            <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-default dropdown-toggle"><i class="icon ion-android-notifications"></i></button><!-- Notication -->
+            <div class="dropdown-menu dropdown-menu-right list-notification">
+                <div class="arrow"></div>
+                <div class="dropdown-header">
+                    <h5>Notification</h5>
+                    <div class="pull-right">
+                        <a href="javascript:;">Đã đọc</a>
+                    </div>
+                </div>
+                <div class="dropdown-body">
+                    <div class="notication-bar">
+                        <ul class="nav nav-sidebar">
+                            <li ng-repeat='activity in activities' ng-class="{active: activity.is_read == 0}">
+                                <div class="media postContent">
+                                    <a class="member " href="javascript:;" ui-sref="post({post_id: activity.id})">
+                                        <span class="media-object"><img ng-src="{{activity.top_users[0].avatar}}" alt=""/></span>
+                                        <h6 class="media-heading">
+                                            <strong>{{activity.top_users[0].display_name}}</strong>
+                                            <span ng-if="activity.type == 'liked'"><span ng-if="activity.count > 1">và {{activity.count - 1}} người khác</span> thích bài viết của bạn</span>
+                                            <span ng-if="activity.type == 'commented'"><span ng-if="activity.count > 1">và {{activity.count - 1}} người khác</span> thích bài viết của bạn </span>
+                                        </h6>
+                                        <small class="times" am-time-ago="'{{activity.updated}}'"></small>
+                                        <span class="read"></span>
+                                    </a>
+                                </div>
+                            </li>
+
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="dropdown-footer"><a href="javascript:;" class="see-all">See all</a></div>
+            </div>
+        </div>
+        <div ng-if="loggedIn" class="btn-group form-profile">
+            <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-default dropdown-toggle">
+                <img ng-src="{{me.avatar}}"><span>{{me.display_name}}</span><span class="caret"></span></button>
+            <div class="dropdown-menu dropdown-profile">
+                <div class="arrow"></div>
+                <div class="dropdown-body">
+                    <ul class="with-border">
+                        <li class="anchor"><a ui-sref="user.activity({userId: me.id })" href="javascript:;"><span class="item-avatar"><img ng-src="{{me.avatar}}"></span><span class="item-info"><span class="item-info-name">{{me.display_name}}</span><span class="item-info-bcoin">{{me.bcoin | shortNumber}}<img src="/images/xbeat-coin.png.pagespeed.ic.6BVlIQPhoC.png"></span></span></a></li>
+                        <li><a ui-sref="chat" href="javascript:;">Quản lý tin nhắn</a></li>
+                        <li><a ui-sref="user.activity({userId: me.id })" href="javascript:;">Xem hồ sơ</a></li>
+                        <li><a ui-sref="profiles" href="javascript:;">Sửa hồ sơ</a></li>
+                        <li><a ng-click="logout()" href="javascript:;">Đăng xuất</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!--<div ng-if="loggedIn"class="form-group form-post"><a href="javascript:;" data-toggle="modal" ng-click="selectCate()" class="btn btn-success"><i class="icon ion-compose"></i></a></div>-->
+    </form>
+</div>
+<div ng-if="loggedIn" class="chat-dock" ng-include="'/views/chat/box.html'">
+
+</div>
+

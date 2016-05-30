@@ -1,0 +1,234 @@
+<head/><div class="media">
+    <div class="thumbnail">
+        <div class="media-header">
+            <div class="media-left">
+                <img ng-if="post.avatar" class="media-object" ng-src="{{post.avatar}}" alt="{{post.display_name}}">
+                <img ng-if="!post.avatar" class="media-object" ng-src="http://beatvn.com/images/avatar.png" alt="{{post.display_name}}">
+            </div>
+
+            <div class="media-body">
+                <h4 class="media-heading">
+                    <a analytics-on="click" analytics-event="ViewDetailUser" ng-if="post.is_anonymous == 0" ui-sref="user.activity({userId: post.user_id })">{{post.display_name}}</a>
+                    <a analytics-on="click" analytics-event="ViewAnonymousUser" ng-if="post.is_anonymous == 1" href="javascript:;">{{post.display_name}}</a>
+                </h4>
+                <div class="heading-sub">
+                    <span>
+                        <a analytics-on="click" analytics-event="ViewDetailPost" ui-sref="post({post_id: post.post_id})" class="times"><span am-time-ago="'{{post.created}}'"></span> - {{post.category_name}}</a>
+                    </span>
+                </div>
+            </div>
+            <div ng-if="post.is_ghim" class="sticker-media">
+                <span class="icon ion-bookmark"></span>
+            </div>
+        </div>
+        <div class="media-caption">
+            <div class="caption">
+                <div ng-bind-html="post.content | filterTxt">
+
+                </div>
+                <a analytics-on="click" analytics-event="ShowMorePost" href="" ng-if="post.showMore" ng-click="showMore()" class="more-post">Xem thêm</a>
+
+            </div>
+        </div>
+        <div class="media-thumb">
+            <div class="sharePhotos" ng-if="post.attachments.length > 1">
+                <div class="plusPhotos add-{{post.attachments.length | classImage}}">
+                    <div class="item-add" ng-repeat="attachment in post.attachments">
+
+                        <a analytics-on="click" analytics-event="ViewPhoto" ng-href="{{attachment.src}}" data-toggle="lightbox" data-gallery="multiimages-{{post.post_id}}" ng-if="post.attachments.length > 5 && $index <= 3">
+                            <img ng-src="{{$index | multiImage}}" style="background: url({{attachment.src}}) no-repeat">
+                        </a>
+                        <a analytics-on="click" analytics-event="ViewPhoto" ng-href="{{attachment.src}}" data-toggle="lightbox" data-gallery="multiimages-{{post.post_id}}" ng-if="post.attachments.length == 5">
+                            <img ng-src="{{$index | multiImage}}" style="background: url({{attachment.src}}) no-repeat">
+                        </a>
+                        <a analytics-on="click" analytics-event="ViewPhoto" ng-href="{{attachment.src}}" data-toggle="lightbox" data-gallery="multiimages-{{post.post_id}}" ng-if="post.attachments.length == 4">
+                            <img ng-src="{{$index | multiImage2}}" style="background: url({{attachment.src}}) no-repeat">
+                        </a>
+                        <a analytics-on="click" analytics-event="ViewPhoto" ng-href="{{attachment.src}}" data-toggle="lightbox" data-gallery="multiimages-{{post.post_id}}" ng-if="post.attachments.length > 1 && post.attachments.length <= 3">
+                            <img ng-src="/images/thumb-1x1.png" style="background: url({{attachment.src}}) no-repeat">
+                        </a>
+                        <a analytics-on="click" analytics-event="ViewPhoto" ng-if="post.attachments.length > 5 && $index == 4" ng-href="{{attachment.src}}" data-toggle="lightbox" data-gallery="multiimages-{{post.post_id}}">
+                            <span class="nums-photo"><b>+{{post.attachments.length - 4}}</b></span>
+                            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKMAAACjAQMAAADcojzDAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAABlJREFUSMftwQEBAAAAgiD/r25IQAEAAPBhDgIAATgkyjIAAAAASUVORK5CYII=" style="background: url({{attachment.src}}) no-repeat">
+                        </a>
+                        <a style="display: none;" analytics-on="click" analytics-event="ViewPhoto" ng-if="post.attachments.length > 6  && $index >= 5" ng-href="{{attachment.src}}" data-toggle="lightbox" data-gallery="multiimages-{{post.post_id}}">
+                            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKMAAACjAQMAAADcojzDAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAABlJREFUSMftwQEBAAAAgiD/r25IQAEAAPBhDgIAATgkyjIAAAAASUVORK5CYII=" style="background: url({{attachment.src}}) no-repeat">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="sharePhotos" ng-if="post.attachments.length == 1">
+                <div class="plusPhotos add-1">
+                    <div class="item-add" ng-repeat="attachment in post.attachments">
+                        <a ng-if="attachment.type == 'image'" analytics-on="click" analytics-event="ViewPhoto" ng-href="{{attachment.src}}" data-toggle="lightbox" data-gallery="multiimages-{{post.post_id}}">
+                            <img img-preload ng-src="{{attachment.src}}">
+                        </a>
+                        <jwplayer ng-if="attachment.type == 'video'" ng-src="{{attachment.src | trusted}}" player-options="{ image: attachment.thumb.src, file: attachment.src, width: 'auto'}" player-id="myPlayer{{post.post_id}}">
+                        </jwplayer>
+                        <!--<video width="640" height="360" id="player1" preload="none">-->
+
+                            <!--&lt;!&ndash; Pseudo HTML5 &ndash;&gt;-->
+                            <!--<source type="application/x-mpegURL" src="{{attachment.src | trusted}}" />-->
+
+                        <!--</video>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="media-share">
+            <div class="post-share" ng-repeat="attachment in post.attachments" ng-if="attachment.type == 'share'">
+                <div class="item-img">
+                    <a target="_blank" class="link-inner" ng-href="{{attachment.src}}">
+                        <img src="images/thumb-16x9.png" style="background: url({{attachment.thumb.src}}) no-repeat">
+                    </a>
+                </div>
+                <div class="item-info">
+                    <a target="_blank" class="link-inner" ng-href="{{attachment.src}}">
+                                    <span class="item-info-title">
+                                        {{attachment.title}}
+                                    </span>
+                                    <span class="item-info-desc">
+                                        {{attachment.description}}
+                                    </span>
+                        <span class="item-info-source">Beatvn.com</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="media-footer">
+            <div class="msg-post">
+                <div class="info-msg">
+                    <div class="pull-left">
+                        <a href="javascript:;" ng-if="post.liked > 0" ng-click="listLiked()"><span>{{post.liked}} lượt thích</span></a>
+                        <a href="javascript:;" ng-if="post.liked == 0"><span>{{post.liked}} lượt thích</span></a>
+                    </div>
+                    <div class="pull-right">
+                        <span>{{post.commented}} bình luận</span>
+                        <span>{{post.shared}} chia sẻ</span>
+                    </div>
+                </div>
+                <div class="btn-msg">
+                    <ul>
+                        <li>
+                            <a analytics-on="click" analytics-event="LikePost" href="javascript:;" ng-if="!post.is_liked" ng-click="likePost()"><i class="icon ion-thumbsup"></i>Thích</a>
+                            <a analytics-on="click" analytics-event="UnlikePost" href="javascript:;" class="active" ng-if="post.is_liked" ng-click="unlikePost()"><i class="icon ion-thumbsup"></i>Bỏ thích</a>
+                        </li>
+                        <li><a href="javascript:;"><i class="icon ion-chatbox"></i>Bình luận</a></li>
+                        <li><a ng-click="shareFb(post.post_id)" href="javascript:;"><i class="icon ion-android-share"></i>Chia sẻ</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="cm-post">
+                <div class="ip-post">
+                    <div class="av-post">
+                        <img ng-if="me.avatar" ng-src="{{me.avatar}}" alt="">
+                        <img ng-if="!me.avatar" ng-src="/images/beatvn.png" alt="">
+                    </div>
+                    <div class="tx-post">
+                        <form ng-submit="leaveComment($event)">
+                            <input ng-model="post.inputComment" type="text" class="form-control" placeholder="Viết bình luận">
+                            <input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;"/>
+
+                        </form>
+
+
+                        <div class="fi-post">
+                            <ul>
+                                <li class="ip-fi">
+                                    <label for="file-2">
+                                        <i class="icon ion-android-camera" data-toggle="tooltip" data-placement="top" title="" data-original-title="Đính kèm ảnh"></i>
+                                    </label>
+                                    <input type="file" id="file-2" class="hide">
+                                </li>
+                                <li class="ip-em">
+                                    <a href="javascript:;" data-toggle="tooltip" data-placement="top" title="" data-original-title="Nhãn dán">
+                                        <i class="icon ion-android-happy"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="it-post">
+                    <!--row comment-->
+                    <div ng-repeat="cm in post.comments.data">
+                        <div class="row-comment">
+                            <div class="av-cm">
+                                <a ui-sref="user.activity({userId: cm.user_id })"><img ng-src="{{cm.avatar}}"></a>
+                            </div>
+                            <div class="tx-cm">
+                                <div class="hd-cm">
+                                    <a ui-sref="user.activity({userId: cm.user_id })">{{cm.display_name}}</a>
+                                    <span ng-bind-html="cm.content | filterTxt"></span>
+
+                                    <a ng-if="cm.post_type == 'images'" ng-repeat="attachment in cm.attachments" href="javascript:;" ng-href="{{attachment.src}}" data-toggle="lightbox" data-gallery="multiimages-{{cm.comment_id}}">
+                                        <img style="width: 42%;" ng-src="{{attachment.src}}" class="img-responsive" alt="">
+                                    </a>
+                                </div>
+                                <div class="bt-cm">
+                                    <a ng-if="!cm.is_liked" ng-click="likeComment($index)" href="javascript:;">Thích</a>
+                                    <a ng-if="cm.is_liked" ng-click="unLikeComment($index)" href="javascript:;">Bỏ thích</a>
+                                    <span class="dot"> · </span>
+                                    <span ng-if="cm.liked > 0"><i class="icon ion-thumbsup">{{cm.liked}}</i></span>
+                                    <span ng-if="cm.liked > 0" class="dot"> · </span>
+                                    <a href="javascript:;" ng-click="replyComment($index)">Trả lời</a>
+                                    <span class="dot"> · </span>
+                                    <span am-time-ago="'{{cm.created}}'"></span>
+                                </div>
+                                <div class="ip-post" ng-show="cm.showReply">
+                                    <div class="av-post">
+                                        <img ng-if="me.avatar" ng-src="{{me.avatar}}" alt="">
+                                        <img ng-if="!me.avatar" ng-src="/images/beatvn.png" alt="">
+                                    </div>
+                                    <div class="tx-post">
+                                        <form ng-submit="leaveReplyComment($index)">
+                                            <input ng-model="post.inputCommentReply[$index]" type="text" class="form-control" placeholder="Viết bình luận">
+                                            <input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;"/>
+
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row-comment reply-comment" ng-if="cm.commented > 0">
+                            <div class="bt-cm">
+                                <a ng-click="getReplyComment(cm.comment_id)" href="javascript:;"><i class="icon ion-forward"></i>{{cm.commented}} câu trả lời</a>
+                            </div>
+                            <div class="row-comment" ng-repeat="rcm in cm.replies">
+                                <div class="av-cm">
+                                    <a ui-sref="user.activity({userId: rcm.user_id })"><img ng-src="{{rcm.avatar}}"></a>
+                                </div>
+                                <div class="tx-cm">
+                                    <div class="hd-cm">
+                                        <a ui-sref="user.activity({userId: rcm.user_id })">{{rcm.display_name}}</a> <span ng-bind-html="rcm.content | filterTxt"></span>
+                                    </div>
+                                    <div class="bt-cm">
+                                        <a href="javascript:;">Thích</a>
+                                        <span class="dot"> · </span>
+                                        <a href="javascript:;">Trả lời</a>
+                                        <span class="dot"> · </span>
+                                        <span am-time-ago="'{{rcm.created}}'"></span>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="show-comment" ng-if="post.comments.moreComment">
+                        <div class="pull-left">
+                            <!--<a ng-if="page == 'fb' && !isMobile" ui-sref="post({post_id: post.post_id})" target="_blank" href="javascript:;">Xem thêm bình luận</a>-->
+                            <a ng-click="getComment(5)" href="javascript:;">Xem thêm bình luận</a>
+                        </div>
+                        <div class="pull-right">
+                            {{post.comments.data.length}} trong số {{post.commented}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

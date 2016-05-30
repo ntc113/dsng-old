@@ -1,0 +1,12 @@
+<head/><div class="option-post">
+    <ul>
+        <li ng-repeat='menu in menus'>
+            <a ng-click="compose($index)" ng-if="menu.state == 1" href="javascript:;" data-toggle="modal" class="ic-post">
+                <div class="ic-post">
+                    <img ng-src="images/post/post-{{menu.slug}}.png">
+                </div>
+                <span>{{menu.name}}</span>
+            </a>
+        </li>
+    </ul>
+</div>

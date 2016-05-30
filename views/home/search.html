@@ -1,0 +1,43 @@
+<head/><div class="bx-search" ng-controller="SearchCtrl">
+    <div class="container"><!--user-->
+        <div class="header-bx">
+            <h3>
+                <span class="symbol sb-picture"><i class="icon ion-ios-people"></i></span>
+                <span>Người dùng</span>
+            </h3>
+        </div>
+
+        <div class="user" infinite-scroll='searchUser()' infinite-scroll-disabled='busyUser' infinite-scroll-distance='3'>
+            <div class="user-inner">
+                <div class="list-user">
+                    <!--item user-->
+                    <div data-masonry-options="{ isFitWidth: true, fitWidth: true }" masonry>
+                        <div class="item-user" ng-repeat='user in users' class="masonry-brick">
+                            <a ui-sref="user.activity({userId: user.id})" href="#">
+                                <span class="item-avatar"><img ng-src="{{user.avatar}}"></span>
+                            <span class="item-info">
+                                <span class="item-info-name"> {{user.display_name}}</span>
+                                <span class="item-info-sub">
+                                    <span><b> {{user.display_name}}</b> bài viết</span>
+                                    <span class="dot">·</span>
+                                    <span><b>{{user.follower}}</b> người theo dõi</span>
+                                </span>
+                            </span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!--end item user-->
+                </div>
+            </div>
+            <!--<div class="load-more">-->
+                <!--<a href="#" class="btn btn-default btn-block btn-lg">-->
+                    <!--Xem thêm-->
+                <!--</a>-->
+            <!--</div>-->
+        </div>
+        <!--end user-->
+
+
+    </div>
+</div>

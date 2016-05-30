@@ -1,0 +1,23 @@
+
+
+.gallery-box {
+    width: 100px;
+    padding: 5px;
+    margin: 7px;
+    float: left;
+    min-height: 200px;
+    border: 1px solid #ddd;
+    overflow: hidden;
+}
+.gallery-box .progress {
+    margin-bottom: 0;
+}
+.gallery-box .thumbnail {
+    height: 88px;
+    width: 88px;
+}
+.gallery-box .title {
+    height: 22px;
+    overflow: hidden;
+    display: block;
+}

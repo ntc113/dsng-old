@@ -1,0 +1,21 @@
+{
+    "name": "ng-jwplayer",
+    "version": "0.2.1",
+    "main": "jwplayer.js",
+    "ignore": [
+        "src",
+	    "node_modules",
+	    "bower_components",
+	    "index1.html",
+        "index2.html",
+        ".bowerrc",
+        ".gitignore",
+        "bower.json",
+        "gulpfile.js",
+        "package.json",
+        "README.md"
+    ],
+    "dependencies": {
+		"angular": "~1.4.0"
+    }
+}

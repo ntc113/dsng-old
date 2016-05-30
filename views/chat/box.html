@@ -1,0 +1,91 @@
+<head/><div class="dock-wrapper">
+    <div class="dock-inner">
+        <!-- tab -->
+        <div class="tabs-dock opened" ui-keypress="{27:'closeBoxChat(id)'}" ng-repeat="(id, boxchat) in boxChats" ng-controller="BoxChatCtrl" ng-init="init(id, boxchat.senderId)">
+            <div class="dock-layout ">
+                <div class="layout-inner">
+                    <div class="layout-title">
+                        <div class="item-setting">
+                            <div class="item-setting-icon icon-add">
+                                <a href="#">
+                                    <span class="icon ion-person-add"></span>
+                                </a>
+                            </div>
+                            <div class="item-setting-icon icon-setting">
+                                <a href="#">
+                                    <span class="icon ion-gear-a"></span>
+                                </a>
+                            </div>
+                            <div class="item-setting-icon icon-close">
+                                <a ng-click="closeBoxChat(id)" href="#">
+                                    <span class="icon ion-close"></span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="item-title">
+                            <a href="#">
+                                <span>{{boxchat.name}}</span>
+                            </a>
+                        </div>
+
+                    </div>
+                    <div class="layout-body scroll-content">
+                        <div class="bx-conversation" scroll-glue>
+                            <div ng-repeat="chat in boxchat.messages" class="item-conversation" ng-class="chat.sender.azStackUserID == me.id ? 'conversation-right' : 'conversation-left'">
+                               <div ng-if="chat.sender.azStackUserID != me.id">
+                                   <div class="item-avatar">
+                                       <a ui-sref="user.activity({userId: chat.sender.azStackUserID })" href="javascript:;">
+                                           <img ng-src="{{boxchat.avatar}}">
+                                       </a>
+                                   </div>
+                                   <div class="item-name">
+                                       {{chat.sender.fullname}}
+                                   </div>
+                               </div>
+
+                                <div class="item-messages">
+                                    <div class="item-content">
+                                        <div class="content-msg">
+                                            <div class="msg-block">
+                                                <div class="msg-body">
+                                                    <div class="msg-text">
+                                                        <span>{{chat.msg}}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="layout-bottom">
+                        <div class="form-text">
+                            <input ui-keypress="{13:'send(boxchat.senderId)'}" ng-model="msg" type="text" class="form-control" placeholder="Nhập tin nhắn">
+                        </div>
+                        <div class="form-extra">
+                            <div class="extra-icon">
+                                <label for="file-chat">
+                                    <i class="icon ion-android-camera" data-toggle="tooltip" data-placement="top" title="" data-original-title="Đính kèm ảnh"></i>
+                                </label>
+                                <input type="file" id="file-chat" class="hide">
+                            </div>
+                            <div class="extra-icon">
+                                <a href="javascript:;" data-placement="bottom" data-toggle="popover" data-container="body" type="button" data-html="true" data-original-title="" title="">
+                                    <i class="icon ion-android-happy"></i>
+                                </a>
+                            </div>
+                            <div class="extra-send">
+                                <a ng-click="send(boxchat.senderId)" class="btn btn-primary btn-sm" href="#">
+                                    Gửi
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end tab -->
+    </div>
+</div>

@@ -1,0 +1,152 @@
+<head/><div class="user-inner">
+    <div class="heading">
+        <div class="heading-title pull-left">
+                <span>
+                    Top Users
+                </span>
+        </div>
+        <div class="heading-more pull-right">
+            <a href="javascript:;" ui-sref="users" data-toggle="modal">
+                Xem thêm
+            </a>
+        </div>
+    </div>
+
+    <div class="list-top">
+        <div ng-if="preLoadingUsers" class="preLoadingUsers">
+            <!--item user-->
+            <div class="item-user">
+                <div class="timeline-wrapper list-user">
+                    <div class="timeline-item">
+                        <div class="animated-background">
+                            <div class="background-masker header-top"></div>
+                            <div class="background-masker header-left"></div>
+                            <div class="background-masker header-right"></div>
+                            <div class="background-masker header-bottom"></div>
+                            <div class="background-masker subheader-left"></div>
+                            <div class="background-masker subheader-right"></div>
+                            <div class="background-masker subheader-bottom"></div>
+                            <div class="background-masker content-top"></div>
+                            <div class="background-masker content-first-end"></div>
+                            <div class="background-masker content-second-line"></div>
+                            <div class="background-masker content-second-end"></div>
+                            <div class="background-masker content-third-line"></div>
+                            <div class="background-masker content-third-end"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end item user-->
+
+            <!--item user-->
+            <div class="item-user">
+                <div class="timeline-wrapper list-user">
+                    <div class="timeline-item">
+                        <div class="animated-background">
+                            <div class="background-masker header-top"></div>
+                            <div class="background-masker header-left"></div>
+                            <div class="background-masker header-right"></div>
+                            <div class="background-masker header-bottom"></div>
+                            <div class="background-masker subheader-left"></div>
+                            <div class="background-masker subheader-right"></div>
+                            <div class="background-masker subheader-bottom"></div>
+                            <div class="background-masker content-top"></div>
+                            <div class="background-masker content-first-end"></div>
+                            <div class="background-masker content-second-line"></div>
+                            <div class="background-masker content-second-end"></div>
+                            <div class="background-masker content-third-line"></div>
+                            <div class="background-masker content-third-end"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end item user-->
+
+            <!--item user-->
+            <div class="item-user">
+                <div class="timeline-wrapper list-user">
+                    <div class="timeline-item">
+                        <div class="animated-background">
+                            <div class="background-masker header-top"></div>
+                            <div class="background-masker header-left"></div>
+                            <div class="background-masker header-right"></div>
+                            <div class="background-masker header-bottom"></div>
+                            <div class="background-masker subheader-left"></div>
+                            <div class="background-masker subheader-right"></div>
+                            <div class="background-masker subheader-bottom"></div>
+                            <div class="background-masker content-top"></div>
+                            <div class="background-masker content-first-end"></div>
+                            <div class="background-masker content-second-line"></div>
+                            <div class="background-masker content-second-end"></div>
+                            <div class="background-masker content-third-line"></div>
+                            <div class="background-masker content-third-end"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end item user-->
+
+            <!--item user-->
+            <div class="item-user">
+                <div class="timeline-wrapper list-user">
+                    <div class="timeline-item">
+                        <div class="animated-background">
+                            <div class="background-masker header-top"></div>
+                            <div class="background-masker header-left"></div>
+                            <div class="background-masker header-right"></div>
+                            <div class="background-masker header-bottom"></div>
+                            <div class="background-masker subheader-left"></div>
+                            <div class="background-masker subheader-right"></div>
+                            <div class="background-masker subheader-bottom"></div>
+                            <div class="background-masker content-top"></div>
+                            <div class="background-masker content-first-end"></div>
+                            <div class="background-masker content-second-line"></div>
+                            <div class="background-masker content-second-end"></div>
+                            <div class="background-masker content-third-line"></div>
+                            <div class="background-masker content-third-end"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end item user-->
+
+            <!--item user-->
+            <div class="item-user">
+                <div class="timeline-wrapper list-user">
+                    <div class="timeline-item">
+                        <div class="animated-background">
+                            <div class="background-masker header-top"></div>
+                            <div class="background-masker header-left"></div>
+                            <div class="background-masker header-right"></div>
+                            <div class="background-masker header-bottom"></div>
+                            <div class="background-masker subheader-left"></div>
+                            <div class="background-masker subheader-right"></div>
+                            <div class="background-masker subheader-bottom"></div>
+                            <div class="background-masker content-top"></div>
+                            <div class="background-masker content-first-end"></div>
+                            <div class="background-masker content-second-line"></div>
+                            <div class="background-masker content-second-end"></div>
+                            <div class="background-masker content-third-line"></div>
+                            <div class="background-masker content-third-end"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end item user-->
+
+
+        </div>
+        <!--item user-->
+        <div class="item-user" ng-repeat='user in listUsers track by $index' ng-if="$index <= 4">
+            <a href="javascript:;" ui-sref="user.activity({userId: user.id})">
+                <span class="item-avatar"><img ng-src="{{ ::user.avatar}}"></span>
+                                <span class="item-info">
+                                    <span class="item-info-name"> {{ ::user.display_name}}</span>
+                                    <span class="item-info-bcoin">{{ ::user.bcoin | shortNumber}}<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAMAAACKnBfWAAAAyVBMVEUAAAAIAgJAEhIYBgRAEQ0gCAZAEA43DgpAEQxTGBU4DgtfGBI/EAt7HxZjGhFvHBabJx9rHBOHIxh/IRd/IBd+HxaeJxyeJxy+MSOeJxyeJxyeJxzGNCieJxy+LyHZNyrSNSnOMye9LyHZOCfdNyflPinxQSy9LyG9LyHdNyfVNCXxPzDdNyf9QCztOyn8Py3tOir8Piz1PSv8PzD8Py38Pi34PSz8Py38Piz8Piz8Piz8Piz8Piz8Piz8Piz8Piz8Piz8Piz8Piy40cXIAAAAQnRSTlMAAQIGBgcLERIWGykrNzg8QEFDRUhob3R4e3x9gomLjI6Tl6KnqKmusLe5u76/ytrc3N/g4uXn6O/x8vT5+vv8/f6Jmwq7AAAAhUlEQVQI10WNRRLDQBADFYeZmZnRIcdZe63/Pyqzl2xfpK5SzQCovBl1YJmRrFqNn8R3G2E9yovnPvzjFYGGZHh33YeWMgUGEuOE46SWUubAgfQL5lBTvI30k7wkjU/IoIySIhdGszfylUFLVvt+rzs8S9kCK/uNfh24fpUKQq0jesdaDD/m4hqzhfQjKwAAAABJRU5ErkJggg=="></span>
+                                </span>
+            </a>
+        </div>
+        <!--end item user-->
+
+    </div>
+</div>

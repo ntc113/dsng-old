@@ -1,0 +1,47 @@
+<head/><button type="button" ng-click="closeModal()" class="close close-popup" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+<div class="modal-dialog modal-lg modal-border">
+    <div class="modal-content">
+
+        <div class="modal-account">
+            <div class="modal-left">
+                <div class="info-ac">
+                    <img class="img-icon" src="images/beatvn_icon.png">
+                    <img class="img-text" src="images/beatvn_text.png">
+                </div>
+            </div>
+            <div class="modal-right">
+                <div class="form-ac">
+                    <div class="form-group">
+                        <a ng-click="loginFacebook()" href="javascript:;" class="btn btn-block btn-lg btn-facebook"><i class="icon ion-social-facebook"></i>Đăng ký với Facebook</a>
+                    </div>
+                    <div class="or">
+                        <span class="or-span">or</span>
+                        <hr>
+                    </div>
+                    <div class="form-group">
+                        <input ng-model="display_name" type="text" class="form-control input-lg" placeholder="Họ tên">
+                    </div>
+                    <div class="form-group">
+                        <input ng-model="phone" type="text" class="form-control input-lg" placeholder="Số điện thoại">
+                    </div>
+                    <div class="form-group">
+                        <input ng-model="email" type="email" class="form-control input-lg" placeholder="Email">
+                    </div>
+                    <div class="form-group">
+                        <input ng-model="password" type="password" class="form-control input-lg" placeholder="Mật khẩu">
+                    </div>
+                    <div class="form-group">
+                        <button ng-click="signup()" class="btn btn-success btn-block btn-lg" type="submit">Đăng ký</button>
+                    </div>
+                    <div class="form-group">
+                        <div class="text-center">
+                            <a href="javascript:;" ng-click="showLoginBox()">Đăng nhập với BEATVN</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,80 @@
+<head/><div class="chat-sidebar">
+    <div class="sidebar-wrapper">
+        <div class="sidebar-inner">
+            <div class="top-height"></div>
+            <div class="sidebar-body">
+                <div class="sidebar-scroll">
+                    <div class="list-title">
+                        <div class="title-inner">
+                            BẠN BÈ
+                        </div>
+                    </div>
+                    <div class="list-member">
+                        <ul>
+                            <li>
+                                <a ng-click="openBoxChat('40475', 1, 'Admin', 'admin')" href="javascript:;">
+                                    <div class="item-member">
+                                        <div class="item-avatar">
+                                            <img ng-src="/images/beatvn.png">
+                                        </div>
+                                        <div class="item-status">
+                                            <span class="status online"></span>
+                                        </div>
+                                        <div class="item-name">
+                                            Admin
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li ng-repeat='user in listUsersForChat' ng-if="user.is_following">
+                                <a ng-click="openBoxChat(user.infoUser.userId, 1, user.display_name, user.id)" href="javascript:;">
+                                    <div class="item-member">
+                                        <div class="item-avatar">
+                                            <img ng-src="{{ ::user.avatar}}">
+                                        </div>
+                                        <div class="item-status">
+                                            <span ng-if="user.infoUser.status == 0" class="status time" am-time-ago="user.infoUser.lastVisitDate "></span>
+                                            <span ng-if="user.infoUser.status == 1" class="status online"></span>
+                                        </div>
+                                        <div class="item-name">
+                                            {{ ::user.display_name}}
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <div class="list-title">
+                        <div class="title-inner">
+                            NGƯỜI DÙNG ONLINE
+                        </div>
+                    </div>
+                    <div class="list-member">
+                        <ul>
+                            <li ng-repeat='user in listUsersForChat' ng-if="!user.is_following">
+                                <a ng-click="openBoxChat(user.infoUser.userId, 1, user.display_name, user.id)" href="javascript:;">
+                                    <div class="item-member">
+                                        <div class="item-avatar">
+                                            <img ng-src="{{ ::user.avatar}}">
+                                        </div>
+                                        <div class="item-status">
+                                            <span ng-if="user.infoUser.status == 0" class="status time" am-time-ago="user.infoUser.lastVisitDate "></span>
+                                            <span ng-if="user.infoUser.status == 1" class="status online"></span>
+                                        </div>
+                                        <div class="item-name">
+                                            {{ ::user.display_name}}
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

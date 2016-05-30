@@ -1,0 +1,51 @@
+
+<head/><div class="post-hot" ng-controller="ListFeaturedCtrl">
+    <div class="post-inner">
+        <div class="heading">
+            <div class="heading-title pull-left">
+                <span>Đang hot</span>
+            </div>
+        </div>
+        <div class="list-post">
+            <div class="item-post" ng-repeat='post in featured'>
+                <div class="item-pic">
+                    <a href="javascript:;" ui-sref="post({post_id: post.post_id})" ng-repeat="attachment in post.attachments" ng-if="$index == 0">
+                        <img ng-if="attachment.type == 'image'" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHsAAAB7AQMAAABuCW08AAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAABhJREFUSMdjYBgFo2AUjIJRMApGwSjACQAIKwABpgkR9QAAAABJRU5ErkJggg==" style="background: url({{attachment.src}}) no-repeat">
+                        <img ng-if="attachment.type == 'video'" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHsAAAB7AQMAAABuCW08AAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAABhJREFUSMdjYBgFo2AUjIJRMApGwSjACQAIKwABpgkR9QAAAABJRU5ErkJggg==" style="background: url({{attachment.thumb.src}}) no-repeat">
+                    </a>
+                </div>
+                <div class="item-info">
+                    <a href="javascript:;" ui-sref="post({post_id: post.post_id})">
+                        {{post.content}}
+                    </a>
+                </div>
+                <div class="item-user">
+                    <a href="javascript:;" ui-sref="user.activity({userId: post.user_id})">
+                        <img class="media-object" ng-src="{{post.avatar}}" alt="">
+                        <span>{{post.display_name}}</span>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="content-footer">
+    <ul>
+        <li>
+            <a ng-click="rules()" href="javascript:;">Nội quy</a>
+        </li>
+        <li>
+            <a href="/">Bản iOS</a>
+        </li>
+        <li>
+            <a href="/">Bản Android</a>
+        </li>
+        <li>
+            <a href="/">Fanpage</a>
+        </li>
+        <li>
+            <a href="/contact">Liên hệ</a>
+        </li>
+    </ul>
+</div>
